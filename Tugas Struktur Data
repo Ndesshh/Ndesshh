@@ -1,0 +1,51 @@
+Notasi O Besar atau Big-O Notation
+Ketika kita memikirkan apakah barisan kode yang kita ciptakan sudah cukup "cepat" atau efisien dalam memecahkan masalah yang ingin kita pecahkan, maka kita butuh sebuah metodologi untuk menghitungnya. Salah satu alat bantu yang bisa kita gunakan adalah notasi O besar atau Big-O Notation.
+
+Ini juga berarti kita ingin menghitung kompleksitas dari sebuah kode. Ada dua dimensi dalam menghitung kompleksitas kode. Pertama adalah kompleksitas ruang atau space complexity yang berkaitan dengan berapa banyak ruang yang digunakan seperti memori ataupun harddisk komputer. Kedua adalah kompleksitas waktu atau time complexity yang berkaitan berapa lama baris kode dijalankan.
+
+Kenapa dibutuhkan sebuah metode untuk menghitung efisiensi kode? Karena kita tidak bisa hanya mengatakan bahwa kumpulan kode ini dapat dijalankan selama lima detik. Padahal sangat banyak faktor penentu lainnya seperti jumlah datanya, koneksi, latensi, jumlah memori, kecepatan prosesor dan masih banyak yang lainnya.
+
+Karena itu kita butuh alat ukur untuk menghitung efisiensi kode secara relatif seperti notasi O besar ini.
+
+Beberapa Contoh Notasi O Besar
+Mari kita melihat contoh notasi O besar dari fungsi, ekspresi dan operasi JavaScript yang sederhana.
+
+1. Array.push()
+push() merupakan sebuah metode untuk menambahkan item baru kedalam sebuah array. Item yang ditambahkan akan berada diakhir array tersebut. Contoh penggunaan dapat dilihat sebagai berikut.
+
+const animals = ['ants', 'goats', 'cows'];
+animals.push('fish');
+console.log(animals); // ['ants', 'goats', 'cows', 'fish']
+
+Apakah notasi yang tepat untuk baris kode animals.push('fish');? Karena metode push() tidak peduli dengan seberapa banyak atau sedikit jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode push() ini dapat diwakilkan dengan notasi O(1) atau konstan.
+
+2. Array.pop()
+pop() merupakan sebuah metode yang mengambil item terakhir dari array sehingga jumlah item yang ada di array akan berkurang satu. Berikut contoh penggunaannya.
+
+const plants = ['broccoli', 'cauliflower', 'cabbage', 'tomato'];
+plants.pop();
+console.log(plants); // ["broccoli", "cauliflower", "cabbage"]
+
+Apakah notasi yang tepat untuk baris kode plants.pop();? Mirip seperti metode push() diatas, metode pop() juga tidak mempermasalahkan jumlah item yang ada, artinya operasi yang berjalan tetap sama, maka metode pop() ini juga dapat diwakilkan dengan notasi O(1) atau konstan.
+
+3. Array.unshift()
+unshift() adalah sebuah metode untuk menambahkan satu atau beberapa item ke bagian awal dari sebuah array. Contoh penggunaannya sebagai berikut.
+
+const array1 = [1, 2, 3];
+array1.unshift(4, 5);
+console.log(array1); // [4, 5, 1, 2, 3]
+
+Sekilas operasi unshift() ini terlihat seperti operasi yang konstan seperti push() dan pop() namun jika kita melakukan implementasi ulang metode ini, maka akan terlihat notasi yang sebenarnya. Berikut kira-kira implementasi dari unshift(), implementasi naif tentunya sekedar gambaran.
+
+function unshift(arr, newItem) {
+  let newArr = [];
+  newArr[0] = newItem;
+  for (let i = 1; i < arr.length + 1; i++) {
+    newArr[i] = arr[i - 1];
+  }
+  return newArr;
+}
+
+Hal yang menambah kompleksitas adalah ketika kita harus mengubah indeks dari array karena kita akan menempatkan item baru di indeks ke-0. Secara otomatis indeks akan bergeser sebanyak satu langkah. Dan karena itu kita menggunakan pengulangan for hingga menjadikan operasi unshift() dapat diwakilkan oleh notasi linear atau O(n). Kita harus menyadari apa yang dilakukan oleh sebuah fungsi, operasi ataupun pustaka sehingga kita dapat memprediksi kira-kira seberapa tingkat kompleksitasnya.
+
+Sumber : https://rizafahmi.com/2020/03/21/notasi-o-besar-big-o-notation/
